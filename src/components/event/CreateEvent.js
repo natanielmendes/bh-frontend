@@ -33,7 +33,7 @@ class CreateEvent extends Component {
 
     render() {
         return (
-            <form className="col-md-4">
+            <div className="col-xs-12">
                 <div className="input-group mb-3">
                     <span className="input-group-text" id="first-name">First Name</span>
                     <input type="text" 
@@ -78,7 +78,7 @@ class CreateEvent extends Component {
                     <button type="button" className="btn btn-outline-primary col-md-3 mr-3" onClick={this.handleSave}>Save</button>
                     <button type="button" className="btn btn-outline-secondary col-md-3" onClick={this.handleClear}>Clear</button>
                 </div>
-            </form>
+            </div>
         )
     }
 }
