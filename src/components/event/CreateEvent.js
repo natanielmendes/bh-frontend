@@ -7,7 +7,7 @@ class CreateEvent extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        eventDate: Date.now()
+        eventDate: new Date().toISOString().substr(0,10)
     }
 
     handleFirstName = (event) => {
@@ -28,7 +28,9 @@ class CreateEvent extends Component {
 
     handleSave = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3001/event', this.state);
+        axios.post('http://localhost:3001/event', this.state).then(result => {
+            this.props.handleEventListUpdate();
+        });
     }
 
     render() {

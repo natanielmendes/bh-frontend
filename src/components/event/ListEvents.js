@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 
 class ListEvents extends Component {
 
@@ -7,39 +7,9 @@ class ListEvents extends Component {
         events: []
     }
 
-    componentDidMount = () => {
-        axios.get('http://localhost:3001/event').then((res) => {
-            const fetchedEvents = [];
-                for (let key in res.data) {
-                    fetchedEvents.push({
-                        ...res.data[key],
-                        id: key
-                    });
-                }
-            this.setState({events: fetchedEvents});
-            console.log(this.state.events)
-        });
-    }
-
-    componentDidUpdate(prevState, nextState) {
-        if (!Object.keys(prevState).length === 0 && prevState !== nextState) {
-            axios.get('http://localhost:3001/event').then((res) => {
-                const fetchedEvents = [];
-                    for (let key in res.data) {
-                        fetchedEvents.push({
-                            ...res.data[key],
-                            id: key
-                        });
-                    }
-                this.setState({events: fetchedEvents});
-                console.log(this.state.events)
-            });
-        }
-    }
-
     render() {
-        let events = []
-        for (let eventData of this.state.events) {
+        let events = [];
+        for (let eventData of this.props.eventsList) {
             events.push(
                 <tr>
                     <th scope="row">{eventData.firstName}</th>
