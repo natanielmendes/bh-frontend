@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import classes from './CreateEvent.module.css';
+import moment from 'moment';
 
 class CreateEvent extends Component {
 
@@ -8,11 +9,17 @@ class CreateEvent extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        eventDate: new Date().toISOString().substr(0,10)
+        eventDate: new Date().toISOString().substr(0,10),
+
     }
 
-    isRequired() {
+    isValidEmail = () => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(this.state.email).toLowerCase());
+    }
 
+    isValidDate = (date) => {
+        return moment(this.state.eventDate, 'YYYY/MM/DD',true).isValid()
     }
 
     handleFirstName = (event) => {
@@ -28,7 +35,9 @@ class CreateEvent extends Component {
     }
 
     handleEventDate = (event) => {
-        this.setState({ eventDate: event.target.value })
+        if (moment(event.target.value).isValid()) {
+            this.setState({ eventDate: event.target.value })
+        }
     }
 
     handleSave = (event) => {
@@ -56,7 +65,7 @@ class CreateEvent extends Component {
                     <input type="text" 
                         value={this.state.firstName} 
                         onChange={this.handleFirstName}
-                        className={this.state.firstName.length ? 'form-control' : 'form-control' + classes.error}
+                        className={this.state.firstName.length ? 'form-control' : classes.error}
                         required
                         aria-label="First name input" 
                         aria-describedby="first-name-input">
@@ -67,7 +76,7 @@ class CreateEvent extends Component {
                     <input type="text" 
                         value={this.state.lastName}
                         onChange={this.handleLastName} 
-                        className={this.state.lastName.length ? 'form-control' : 'form-control' + classes.error}
+                        className={this.state.lastName.length ? 'form-control' : classes.error}
                         required
                         aria-label="Last name input" 
                         aria-describedby="last-name-input">
@@ -78,18 +87,18 @@ class CreateEvent extends Component {
                     <input type="text" 
                         value={this.state.email}
                         onChange={this.handleEmail} 
-                        className={this.state.email.length ? 'form-control' : 'form-control' + classes.error}
+                        className={this.state.email.length || !this.isValidEmail ? 'form-control' : classes.error}
                         required
                         aria-label="Email input" 
                         aria-describedby="email-input">
                     </input>
                 </div>
                 <div className="input-group mb-3">
-                    <span className="input-group-text" id="event-date">Event Date</span>
+                    <span className="input-group-text" id="event-date">Event Date*</span>
                     <input type="date" 
                         value={this.state.eventDate}
                         onChange={this.handleEventDate} 
-                        className="form-control" 
+                        className={this.state.email.length || this.isValidDate ? 'form-control' : classes.error}
                         aria-label="Event date input" 
                         aria-describedby="event-date-input">
                     </input>
