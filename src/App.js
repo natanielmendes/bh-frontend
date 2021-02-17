@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import CreateEvent from './components/event/CreateEvent';
 import ListEvents from './components/event/ListEvents';
+import Auxiliary from './hoc/Auxiliary/Auxiliary';
 
 class App extends Component {
 
@@ -29,16 +30,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <main className="App-main">
-          <div className="row">
-            <CreateEvent handleEventListUpdate={this.handleEventListUpdate}></CreateEvent>
-          </div>
-          <div className="row">
-            <ListEvents eventsList={this.state.events}></ListEvents>
-          </div>
-        </main>
-      </div>
+      <Auxiliary>
+        <div className="App">
+          <main className="App-main">
+            <div className="row">
+              <CreateEvent handleEventListUpdate={this.handleEventListUpdate}></CreateEvent>
+            </div>
+            <div className="row">
+              <ListEvents eventsList={this.state.events}></ListEvents>
+            </div>
+          </main>
+        </div>
+      </Auxiliary>
     );
   }
     

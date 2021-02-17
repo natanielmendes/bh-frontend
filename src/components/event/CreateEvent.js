@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import classes from './CreateEvent.module.css';
 
 class CreateEvent extends Component {
 
@@ -10,8 +11,12 @@ class CreateEvent extends Component {
         eventDate: new Date().toISOString().substr(0,10)
     }
 
+    isRequired() {
+
+    }
+
     handleFirstName = (event) => {
-        this.setState({ firstName: event.target.value })
+        this.setState({ firstName: event.target.value });
     }
 
     handleLastName = (event) => {
@@ -47,31 +52,34 @@ class CreateEvent extends Component {
         return (
             <div className="col-xs-12">
                 <div className="input-group mb-3">
-                    <span className="input-group-text" id="first-name">First Name</span>
+                    <span className="input-group-text" id="first-name">First Name*</span>
                     <input type="text" 
                         value={this.state.firstName} 
                         onChange={this.handleFirstName}
-                        className="form-control" 
+                        className={this.state.firstName.length ? 'form-control' : 'form-control' + classes.error}
+                        required
                         aria-label="First name input" 
                         aria-describedby="first-name-input">
                     </input>
                 </div>
                 <div className="input-group mb-3">
-                    <span className="input-group-text" id="last-name">Last Name</span>
+                    <span className="input-group-text" id="last-name">Last Name*</span>
                     <input type="text" 
                         value={this.state.lastName}
                         onChange={this.handleLastName} 
-                        className="form-control" 
+                        className={this.state.lastName.length ? 'form-control' : 'form-control' + classes.error}
+                        required
                         aria-label="Last name input" 
                         aria-describedby="last-name-input">
                     </input>
                 </div>
                 <div className="input-group mb-3">
-                    <span className="input-group-text" id="email">Email</span>
+                    <span className="input-group-text" id="email">Email*</span>
                     <input type="text" 
                         value={this.state.email}
                         onChange={this.handleEmail} 
-                        className="form-control" 
+                        className={this.state.email.length ? 'form-control' : 'form-control' + classes.error}
+                        required
                         aria-label="Email input" 
                         aria-describedby="email-input">
                     </input>
