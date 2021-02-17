@@ -74,3 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 * Create a navigation menu to switch at least from create and list routes
 * Implement pagination in the events list
 * Load event on clicking event from the events list, filling inputs with the details and showing an update button to the user
+* Use Redux to manage state currently placed in App.js file
