@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## What could be set as requirements for an upcoming release (0.0.2 version)
+* Configure routes, at least one for creating and another for listing the events
+* Create a navigation menu to switch at least from create and list routes
+* Implement pagination in the events list
+* Load event on clicking event from the events list, filling inputs with the details and showing an update button to the user
