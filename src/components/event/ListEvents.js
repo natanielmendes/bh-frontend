@@ -10,9 +10,10 @@ class ListEvents extends Component {
     render() {
         let events = [];
         for (let eventData of this.props.eventsList) {
+            console.log(eventData.key)
             events.push(
-                <tr>
-                    <th scope="row">{eventData.firstName}</th>
+                <tr key={eventData.key}>
+                    <th>{eventData.firstName}</th>
                     <td>{eventData.lastName}</td>
                     <td>{eventData.email}</td>
                     <td>{eventData.eventDate}</td>
@@ -20,13 +21,13 @@ class ListEvents extends Component {
             )
         }
         return (
-            <table class="table table-hover">
+            <table className="table table-hover">
                 <thead>
                     <tr>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Event Date</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Event Date</th>
                     </tr>
                 </thead>
                 <tbody>

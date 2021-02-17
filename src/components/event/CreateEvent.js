@@ -33,6 +33,16 @@ class CreateEvent extends Component {
         });
     }
 
+    handleClear = (event) => {
+        event.preventDefault();
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            eventDate: new Date().toISOString().substr(0,10)
+        });
+    }
+
     render() {
         return (
             <div className="col-xs-12">
